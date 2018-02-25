@@ -401,7 +401,7 @@ const Change_Position = (e) =>
                 break;
             case 13:
             {
-                if(game_over == true)
+                if(game_over === true)
                 {
                     press_exit = true;
                 }
@@ -548,7 +548,7 @@ function Delete_Table_Points()
 
 function Menu_Game()
 {
-        if (game_start == true)
+        if (game_start === true)
         {
             Create_Table_Points_Timer();
             accepted_click = false;
@@ -577,7 +577,7 @@ function Menu_Game()
            {
                hover_position = 0;
            }
-           if(main_menu == true)
+           if(main_menu === true)
            {
 
                content_area.drawImage(image_menu[hover_position],0,0,500,500);
@@ -602,17 +602,17 @@ function Menu_Game()
             move_image_cloud_2--;
             move_image_cloud_3--;
 
-            if(move_image_cloud_1 ==-90)
+            if(move_image_cloud_1 ===-90)
             {
                 move_image_cloud_1 = 500;
             }
 
-            if(move_image_cloud_2 == -110)
+            if(move_image_cloud_2 === -110)
             {
                 move_image_cloud_2 = 500;
             }
 
-            if(move_image_cloud_3 == -90)
+            if(move_image_cloud_3 === -90)
             {
                 move_image_cloud_3=500;
             }
@@ -712,7 +712,7 @@ function playerposition(e)
 
 function cursor_click_on_position()
 {
-    if(accepted_click == true)
+    if(accepted_click === true)
     {
         if(((pos_cursor_x>=175)&&(pos_cursor_x<=285)) && ((pos_cursor_y>=130)&&(pos_cursor_y<=190)))
         {
@@ -731,7 +731,7 @@ function cursor_click_on_position()
     }
 }
 
-canvas.addEventListener("mousemove",playerposition)
+canvas.addEventListener("mousemove",playerposition);
 document.addEventListener("keydown", Change_Position);
 canvas.addEventListener('click', cursor_click_on_position);
 init();
