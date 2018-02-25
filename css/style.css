@@ -1,0 +1,40 @@
+body
+{
+    margin: 0px;
+    padding: 0px;
+    height: 200px;
+    background-color: darkgray;
+}
+
+.Game
+{
+    text-align: center;
+    height: 606px;
+    background-color: black;
+}
+
+canvas
+{
+    border:  3px solid #fff;
+    margin-top: 50px;
+}
+
+#Timer
+{
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    color: whitesmoke;
+    line-height: 100px;
+    font-size: 40px;
+}
+
+#Table-Player p
+{
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    color: whitesmoke;
+    line-height: 200px;
+    font-size: 60px;
+}
