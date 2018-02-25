@@ -1,6 +1,6 @@
 const canvas = document.querySelector('canvas');
 const image_snake_tail = new Image();
-const image_menu = [new Image(),new Image(),new Image(),new Image(),new Image(),new Image(),new Image(), new Image(), new Image()];
+const image_menu = [];
 const content_area = canvas.getContext('2d');
 const head_snake_x = [0,21];
 const head_snake_y = [21,42];
@@ -14,6 +14,12 @@ const position_map_y = [];
 
 canvas.width = 500;
 canvas.height = 500;
+
+for(var i = 0; i < 9; i++)
+{
+    image_menu.push(new Image());
+}
+
 image_snake_tail.src="images/Snake_Tail.jpg";
 image_menu[0].src = "images/Menu.gif";
 image_menu[1].src = "images/Menu_hover_play.gif";
@@ -97,6 +103,7 @@ function Restart()
     begin_game = true;
     timer_start = 30;
     time_to_start = '3';
+    press_exit = false;
 }
 
 function Draw_Snake()
@@ -659,7 +666,8 @@ function Game()
         Board();
         Draw_Snake();
         Colision_With_Like();
-        if (random_a_new_like === true) {
+        if (random_a_new_like === true)
+        {
             Random_Like();
         }
         set_direction = true;
@@ -681,10 +689,10 @@ function Game_Over()
     content_area.font = "60px Comic Sans MS";
     content_area.fillStyle = "white";
     content_area.textAlign = "center";
-    content_area.fillText("GAme OVER", canvas.width/2, canvas.height/2 - 50);
+    content_area.fillText("GAME OVER", canvas.width/2, canvas.height/2 - 50);
     content_area.fillText("Press Enter", canvas.width/2, canvas.height/2 + 50);
 
-    if(press_exit == true)
+    if(press_exit === true)
     {
         Restart();
         accepted_click = true;
