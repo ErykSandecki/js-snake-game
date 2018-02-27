@@ -6,9 +6,15 @@ body
     background-color: darkgray;
 }
 
-.game
-{
-    text-align: center;
-    height: 500px;
-    background-color: black;
+.game{
+    position: relative;
+    background: white;
+}
+.game .snake{
+    position: relative;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    background: #000;
 }

@@ -13,11 +13,15 @@ var game = {
 
     },
 
-    onKeyDown: function(event)
+    onKeyDown = (e) =>
     {
         switch(e.keyCode)
         {
             case 38:
+                if(this.snake.vector !== 'down')
+                {
+                    this.snake.vector = 'up';
+                }
                 break;
             case 40:
                 break;
