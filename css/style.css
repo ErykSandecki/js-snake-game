@@ -6,15 +6,20 @@ body
     background-color: darkgray;
 }
 
-.game{
+#game{
     position: relative;
     background: white;
+    height: 500px;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
-.game .snake{
-    position: relative;
+
+
+#fruit
+{
+    position: absolute;
+    background-color: red;
     width: 20px;
     height: 20px;
-    top: 0;
-    left: 0;
-    background: #000;
 }
