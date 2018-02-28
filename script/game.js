@@ -8,6 +8,7 @@ var gameResolution;
 var foodPosition;
 var addNewDiv = false;
 const snakeNode = [];
+const fruitNode = document.getElementById('fruit')
 init = function()
 {
     gameResolution = [24,24];
@@ -23,9 +24,9 @@ getNewFoodPosition = function()
         foodPosition = getRandomNewPositionFood();
     }while(!isFoodOnSnake(foodPosition));
 
-    const fruitNode = document.getElementById('fruit')
     fruitNode.style.left = (foodPosition[0]*20).toString() + 'px';
     fruitNode.style.top = (foodPosition[1]*20).toString() + 'px';
+    fruitNode.innerHTML = '<img src="images/snakeLike.jpg"/>';
 };
 
 isFoodOnSnake = function(foodPosition)
@@ -118,7 +119,6 @@ moveSnake = function()
 
     snake.body = newSnakebody;
     snake.vector = newVector;
-    console.log(newVector);
 
     if(addNewDiv === true)
     {
