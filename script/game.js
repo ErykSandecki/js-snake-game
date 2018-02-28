@@ -4,15 +4,14 @@ var snake =
     body :[[12,12],[12,13],[12,14]],
     radiusBody : ['<img src="images/snakeRadiusDegress0-90.jpg"/>','<img src="images/snakeRadiusDegress90-180.jpg"/>','<img src="images/snakeRadiusDegress180-270.jpg"/>','<img src="images/snakeRadiusDegress270-360.jpg"/>'],
 };
-
+const snakeNode = [];
+const fruitNode = document.getElementById('fruit');
+const radiusBodyPosition = [];
+const numberRadiusImage = [];
 var gameResolution;
 var foodPosition;
 var addNewDiv = false;
-const snakeNode = [];
-const fruitNode = document.getElementById('fruit');
 var numberRadius;
-const radiusBodyPosition = [];
-const numberRadiusImage = [];
 var nextPressKey = true;
 
 init = function()
@@ -37,7 +36,7 @@ getNewFoodPosition = function()
 
 isFoodOnSnake = function(foodPosition)
 {
-     for(var i = 0; i<snake.body.length; i++)
+     for(var i = 0; i < snake.body.length; i++)
      {
         return ((foodPosition[0] === snake.body[i][0]) && (foodPosition[1] === snake.body[i][1])) ? false : true;
      }
@@ -75,10 +74,10 @@ addBeginBodySnake = function()
         }
     }
 
-    for(var i = 0; i<snake.body.length; i++)
+    for(var i = 0; i < snake.body.length; i++)
     {
-        snakeNode[i].style.left = (snake.body[i][0]* 20).toString() + 'px';
-        snakeNode[i].style.top = (snake.body[i][1]* 20).toString() + 'px';
+        snakeNode[i].style.left = (snake.body[i][0] * 20).toString() + 'px';
+        snakeNode[i].style.top = (snake.body[i][1] * 20).toString() + 'px';
     }
 }
 
@@ -93,7 +92,7 @@ moveSnake = function()
         newVector.push(snake.vector[i]);
     }
 
-    for(var i = snake.body.length - 1; i >0; i--)
+    for(var i = snake.body.length - 1; i > 0; i--)
     {
         newSnakebody[i]= newSnakebody[i - 1];
         newVector[i] = newVector[i - 1];
@@ -167,7 +166,7 @@ const onKeyDown = (e) =>
             switch (e.keyCode)
             {
                 case 38:
-                    if (snake.vector[0] !== 'down')
+                    if ((snake.vector[0] !== 'down') && (snake.vector[0] !== 'up'))
                     {
                         setRadiusBodySnake(snake.vector[0],'up');
                         snake.vector[0] = 'up';
@@ -175,7 +174,7 @@ const onKeyDown = (e) =>
                     break;
 
                 case 40:
-                    if (snake.vector[0] !== 'up')
+                    if ((snake.vector[0] !== 'up') && (snake.vector[0] !== 'down'))
                     {
                         setRadiusBodySnake(snake.vector[0],'down');
                         snake.vector[0] = 'down';
@@ -183,7 +182,7 @@ const onKeyDown = (e) =>
                     break;
 
                 case 37:
-                    if (snake.vector[0] !== 'right')
+                    if ((snake.vector[0] !== 'right') && (snake.vector[0] !== 'left'))
                     {
                         setRadiusBodySnake(snake.vector[0],'left');
                         snake.vector[0] = 'left';
@@ -191,7 +190,7 @@ const onKeyDown = (e) =>
                     break;
 
                 case 39:
-                    if (snake.vector[0] !== 'left')
+                    if ((snake.vector[0] !== 'left') && (snake.vector[0] !== 'right'))
                     {
                         setRadiusBodySnake(snake.vector[0],'right');
                         snake.vector[0] = 'right';
@@ -201,7 +200,6 @@ const onKeyDown = (e) =>
 
             nextPressKey = !nextPressKey;
         }
-
 };
 
 drawSnake = function()
@@ -212,7 +210,7 @@ drawSnake = function()
         snakeNode[i].style.top = (snake.body[i][1]* 20).toString() + 'px';
         changeDivImg(i);
     }
-    console.log(snake.body);
+
     moveSnake();
     onWallSnake();
 
@@ -258,22 +256,22 @@ changeDivImg = function (number)
 
         if(snake.vector[snake.vector.length - 1] === 'up')
         {
-          return  snakeNode[snake.vector.length - 1].innerHTML = '<img src="images/snakeTailUp.jpg"/>';
+          snakeNode[snake.vector.length - 1].innerHTML = '<img src="images/snakeTailUp.jpg"/>';
         }
 
         else if(snake.vector[snake.vector.length - 1] === 'down')
         {
-          return  snakeNode[snake.vector.length - 1].innerHTML = '<img src="images/snakeTailDown.jpg"/>';
+          snakeNode[snake.vector.length - 1].innerHTML = '<img src="images/snakeTailDown.jpg"/>';
         }
 
         else if(snake.vector[snake.vector.length - 1] === 'left')
         {
-          return  snakeNode[snake.vector.length - 1].innerHTML = '<img src="images/snakeTailLeft.jpg"/>';
+          snakeNode[snake.vector.length - 1].innerHTML = '<img src="images/snakeTailLeft.jpg"/>';
         }
 
         else
         {
-           return snakeNode[snake.vector.length - 1].innerHTML = '<img src="images/snakeTailRight.jpg"/>';
+           snakeNode[snake.vector.length - 1].innerHTML = '<img src="images/snakeTailRight.jpg"/>';
         }
     }
 
@@ -281,26 +279,26 @@ changeDivImg = function (number)
     {
         if(snake.vector[0] === 'up')
         {
-           return snakeNode[0].innerHTML = '<img src="images/snakeHeadUp.jpg"/>';
+           snakeNode[0].innerHTML = '<img src="images/snakeHeadUp.jpg"/>';
         }
 
         else if(snake.vector[0] === 'down')
         {
-           return snakeNode[0].innerHTML = '<img src="images/snakeHeadDown.jpg"/>';
+           snakeNode[0].innerHTML = '<img src="images/snakeHeadDown.jpg"/>';
         }
 
         else if(snake.vector[0] === 'left')
         {
-          return  snakeNode[0].innerHTML = '<img src="images/snakeHeadLeft.jpg"/>';
+          snakeNode[0].innerHTML = '<img src="images/snakeHeadLeft.jpg"/>';
         }
 
         else
         {
-          return  snakeNode[0].innerHTML = '<img src="images/snakeHeadRight.jpg"/>';
+          snakeNode[0].innerHTML = '<img src="images/snakeHeadRight.jpg"/>';
         }
     }
 
-    if(onRadiusBody(snake.body[number]))
+    else if(onRadiusBody(snake.body[number]))
     {
          snakeNode[number].innerHTML = snake.radiusBody[numberRadiusImage[numberRadius]];
     }
