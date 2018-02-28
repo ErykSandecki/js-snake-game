@@ -1,3 +1,4 @@
+// Marcin kurs//
 const canvas = document.querySelector('canvas');
 const image_snake_tail = new Image();
 const image_menu = [];
