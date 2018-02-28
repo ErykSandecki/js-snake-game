@@ -1,7 +1,8 @@
 var snake =
 {
     vector : ['up','up','up'],
-    body :[[12,12],[12,13],[12,14]]
+    body :[[12,12],[12,13],[12,14]],
+    radiusBody : ['<img src="images/snakeRadiusDegress0-90.jpg"/>','<img src="images/snakeRadiusDegress90-180.jpg"/>','<img src="images/snakeRadiusDegress180-270.jpg"/>','<img src="images/snakeRadiusDegress270-360.jpg"/>'],
 };
 
 var gameResolution;
@@ -9,6 +10,9 @@ var foodPosition;
 var addNewDiv = false;
 const snakeNode = [];
 const fruitNode = document.getElementById('fruit')
+var radiusBodyPosition = [];
+var numberRadiusImage = [];
+
 init = function()
 {
     gameResolution = [24,24];
@@ -129,22 +133,47 @@ moveSnake = function()
     }
 };
 
+setRadiusBodySnake = function (vectorActually, vectorSet)
+{
+    if(((vectorActually === 'up') && (vectorSet === 'left')) || ((vectorActually === 'right') && (vectorSet === 'down')))
+    {
+        numberRadiusImage.push(0);
+    }
+
+    else if(((vectorActually === 'down') && (vectorSet === 'left')) || ((vectorActually === 'right') && (vectorSet === 'up')))
+    {
+        numberRadiusImage.push(1);
+    }
+
+    else if(((vectorActually === 'left') && (vectorSet === 'up')) || ((vectorActually === 'down') && (vectorSet === 'right')))
+    {
+        numberRadiusImage.push(2);
+    }
+
+    else
+    {
+        numberRadiusImage.push(3);
+    }
+
+    radiusBodyPosition.push([snake.body[0][0],snake.body[0][1]]);
+};
+
 const onKeyDown = (e) =>
 {
        switch (e.keyCode)
        {
-
         case 38:
             if (snake.vector[0] !== 'down')
             {
+                setRadiusBodySnake(snake.vector[0],'up');
                 snake.vector[0] = 'up';
-
             }
             break;
 
         case 40:
             if (snake.vector[0] !== 'up')
             {
+                setRadiusBodySnake(snake.vector[0],'down');
                 snake.vector[0] = 'down';
             }
             break;
@@ -152,6 +181,7 @@ const onKeyDown = (e) =>
         case 37:
             if (snake.vector[0] !== 'right')
             {
+                setRadiusBodySnake(snake.vector[0],'left');
                 snake.vector[0] = 'left';
             }
             break;
@@ -159,6 +189,7 @@ const onKeyDown = (e) =>
         case 39:
             if (snake.vector[0] !== 'left')
             {
+                setRadiusBodySnake(snake.vector[0],'right');
                 snake.vector[0] = 'right';
             }
             break;
@@ -179,53 +210,70 @@ drawSnake = function()
 
 changeDivImg = function (number)
 {
-    if(number === 0)
+    if(number === snake.vector.length - 1)
     {
-        if(snake.vector[0] === 'up')
+        for(var i = 0; i < radiusBodyPosition.length; i++)
         {
-            snakeNode[0].innerHTML = '<img src="images/snakeHeadUp.jpg"/>';
+            if((snake.body[number][0] === radiusBodyPosition[i][0]) && (snake.body[number][1] === radiusBodyPosition[i][1]))
+            {
+                numberRadiusImage.shift();
+                radiusBodyPosition.shift();
+            }
         }
 
-        else if(snake.vector[0] === 'down')
+        if(snake.vector[snake.vector.length - 1] === 'up')
         {
-            snakeNode[0].innerHTML = '<img src="images/snakeHeadDown.jpg"/>';
+          return  snakeNode[snake.vector.length - 1].innerHTML = '<img src="images/snakeTailUp.jpg"/>';
         }
 
-        else if(snake.vector[0] === 'left')
+        else if(snake.vector[snake.vector.length - 1] === 'down')
         {
-            snakeNode[0].innerHTML = '<img src="images/snakeHeadLeft.jpg"/>';
+          return  snakeNode[snake.vector.length - 1].innerHTML = '<img src="images/snakeTailDown.jpg"/>';
+        }
+
+        else if(snake.vector[snake.vector.length - 1] === 'left')
+        {
+          return  snakeNode[snake.vector.length - 1].innerHTML = '<img src="images/snakeTailLeft.jpg"/>';
         }
 
         else
         {
-            snakeNode[0].innerHTML = '<img src="images/snakeHeadRight.jpg"/>';
+           return snakeNode[snake.vector.length - 1].innerHTML = '<img src="images/snakeTailRight.jpg"/>';
         }
     }
 
-    else if(number === snake.vector.length - 1)
+    else if(number === 0)
     {
-      if(snake.vector[snake.vector.length - 1] === 'up')
-      {
-          snakeNode[snake.vector.length - 1].innerHTML = '<img src="images/snakeTailUp.jpg"/>';
-      }
+        if(snake.vector[0] === 'up')
+        {
+           return snakeNode[0].innerHTML = '<img src="images/snakeHeadUp.jpg"/>';
+        }
 
-      else if(snake.vector[snake.vector.length - 1] === 'down')
-      {
-          snakeNode[snake.vector.length - 1].innerHTML = '<img src="images/snakeTailDown.jpg"/>';
-      }
+        else if(snake.vector[0] === 'down')
+        {
+           return snakeNode[0].innerHTML = '<img src="images/snakeHeadDown.jpg"/>';
+        }
 
-      else if(snake.vector[snake.vector.length - 1] === 'left')
-      {
-          snakeNode[snake.vector.length - 1].innerHTML = '<img src="images/snakeTailLeft.jpg"/>';
-      }
+        else if(snake.vector[0] === 'left')
+        {
+          return  snakeNode[0].innerHTML = '<img src="images/snakeHeadLeft.jpg"/>';
+        }
 
-      else
-      {
-          snakeNode[snake.vector.length - 1].innerHTML = '<img src="images/snakeTailRight.jpg"/>';
-      }
+        else
+        {
+          return  snakeNode[0].innerHTML = '<img src="images/snakeHeadRight.jpg"/>';
+        }
     }
 
-    else if((snake.vector[number] === 'left') || (snake.vector[number] === 'right'))
+    for(var i = 0; i < radiusBodyPosition.length; i++)
+    {
+        if((snake.body[number][0] === radiusBodyPosition[i][0]) && (snake.body[number][1] === radiusBodyPosition[i][1]))
+        {
+            return snakeNode[number].innerHTML = snake.radiusBody[numberRadiusImage[i]];
+        }
+    }
+
+    if((snake.vector[number] === 'left') || (snake.vector[number] === 'right'))
     {
         snakeNode[number].innerHTML = '<img src="images/snakeBodyLengthHorizontally.jpg"/>';
     }
@@ -258,4 +306,4 @@ addDivSnake = function()
 };
 
 init();
-setInterval(drawSnake,10000/60);
+setInterval(drawSnake,5000/60);
