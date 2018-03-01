@@ -94,7 +94,7 @@
                     <form class="form-group">
                         <div class="row">
                             <div class="col-md-offset-2 col-md-4 col-lg-3 col-lg-offset-3">
-                                <input id="get-Email" type="email" class="form-control send" name="Adres e-mail" placeholder="E-mail">
+                                <input id="get-Email"  type="email" class="form-control send" name="Adres e-mail" placeholder="E-mail">
                                 <p id="bad-email"></p>
                             </div>
                             <div class="col-md-4 col-lg-3">
@@ -111,7 +111,17 @@
 		<!--### Gra ## feature-game ### Gra za email -->
 		<section id="play">
 			<div id="game">
-				<div id="fruit"></div>
+                <div onclick="init()" id="start-game">
+                    <p>GRAJ</p>
+                </div>
+                <div id="instruction">
+                    <p>INSTRUKCJA</p>
+                </div>
+                <div id="back-instruction"></div>
+                <div id="exit" onclick="exitGame()">
+                    <p>WYJŚCIE</p>
+                </div>
+                <div id="fruit"></div>
 			</div>
 		</section>
 
@@ -259,6 +269,7 @@
 <script src="bootstrap/jquery.min.js"></script>
 <script src="bootstrap/bootstrap.min.js"></script>
 <script src="script/game.js"></script>
+<script src="script/menuGame.js"></script>
 <script src="script/checkEmail.js"></script>
 </body>
 </html>

@@ -18,28 +18,13 @@ var snake =
     };
 
 //Set Css in div class play, game, fruit after correct entry email//
-setCssGame = function ()
-{
-    setGame = document.getElementById('play');
-    setGame.style.backgroundColor = '#2D2E32';
-    setGame.style.paddingBottom = '40px';
-    setGame = document.getElementById('game');
-    setGame.style.position = 'relative';
-    setGame.style.background = 'white';
-    setGame.style.height = '501px';
-    setGame.style.width = '500px';
-    setGame.style.marginLeft = 'auto';
-    setGame.style.marginRight = 'auto';
-    setGame = document.getElementById('fruit');
-    setGame.style.position = 'absolute';
-    setGame.style.width = '20px';
-    setGame.style.height = '20px';
-    setGame.innerHTML = '<img src="images/snakeLike.jpg"/>';
-    init();
-}
 
 init = function()
 {
+    document.getElementById('game').style.backgroundImage = "unset";
+    document.getElementById('start-game').style.display = "none";
+    document.getElementById('instruction').style.display = "none";
+    document.getElementById('exit').style.display = "none";
     snake.vector = ['up','up','up'];
     snake.body = [[12,12],[12,13],[12,14]]
     snakeNode = [];
@@ -59,7 +44,7 @@ getNewFoodPosition = function()
     {
         foodPosition = getRandomNewPositionFood();
     }while(isFoodOnSnake(foodPosition));
-
+    fruitNode.innerHTML = '<img src="images/snakeLike.jpg"/>';
     fruitNode.style.left = (foodPosition[0] * 20).toString() + 'px';
     fruitNode.style.top = (foodPosition[1] * 20).toString() + 'px';
 };
