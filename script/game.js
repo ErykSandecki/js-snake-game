@@ -9,6 +9,9 @@ var foodPosition;
 var addNewDiv;
 var numberRadius;
 var nextPressKey;
+var points;
+var upSpeedSnake;
+var addPoints;
 
 var snake =
     {
@@ -23,6 +26,8 @@ init = function()
 {
     document.getElementById('game').style.backgroundImage = "unset";
     setViewButtonMenu("none");
+    document.getElementById('table-points').style.display = "block";
+    document.getElementById('set-picture').src = '';
     snake.vector = ['up','up','up'];
     snake.body = [[12,12],[12,13],[12,14]]
     snakeNode = [];
@@ -31,9 +36,12 @@ init = function()
     addNewDiv = false;
     nextPressKey = true;
     gameResolution = [24,24];
+    points = 0;
+    upSpeedSnake = 6000;
+    addPoints = false;
     getNewFoodPosition();
     addBeginBodySnake();
-    refreshGame = setInterval(drawSnake,5000/60);
+    refreshGame = setInterval(drawSnake,upSpeedSnake/60);
 };
 
 hideButtonMenu = function ()
@@ -103,7 +111,7 @@ addBeginBodySnake = function()
         snakeNode[i].style.left = (snake.body[i][0] * 20).toString() + 'px';
         snakeNode[i].style.top = (snake.body[i][1] * 20).toString() + 'px';
     }
-}
+};
 
 moveSnake = function()
 {
@@ -144,6 +152,8 @@ moveSnake = function()
         newVector.push(snake.vector[snake.vector. length - 1]);
         getNewFoodPosition();
         addNewDiv = !addNewDiv;
+        points += 10;
+        addPoints = !addPoints;
     }
 
     snake.body = newSnakebody;
@@ -221,9 +231,9 @@ const onKeyDown = (e) =>
                     }
                     break;
 
-                case 13:
-                    clearTimeout(clearTimeDeleteDiv);
-                    init();
+                case 27:
+                    clearInterval(refreshGame);
+                    onDeleteDiv();
                     break;
             }
 
@@ -239,7 +249,7 @@ drawSnake = function()
         snakeNode[i].style.top = (snake.body[i][1]* 20).toString() + 'px';
         changeDivImg(i);
     }
-
+    document.getElementById('player-points').innerText = "Points : " + points;
     moveSnake();
     onYourOwnBody();
     onWallSnake();
@@ -247,6 +257,13 @@ drawSnake = function()
     if(!nextPressKey)
     {
         nextPressKey = !nextPressKey;
+    }
+    if(addPoints)
+    {
+        upSpeedSnake -= 25;
+        addPoints = !addPoints;
+        clearInterval(refreshGame);
+        refreshGame = setInterval(drawSnake,upSpeedSnake/60);
     }
 };
 
@@ -260,7 +277,7 @@ onYourOwnBody = function ()
             clearTimeDeleteDiv = setTimeout(onDeleteDiv, 2000);
         }
     }
-}
+};
 
 onDeleteDiv = function ()
 {
@@ -268,7 +285,13 @@ onDeleteDiv = function ()
     {
         document.getElementById('game').removeChild(snakeNode[i]);
     }
-}
+
+    setViewButtonMenu('block');
+    document.getElementById('set-picture').src = 'images/tubeMenu.jpg';
+    fruitNode.innerHTML = '<img src=""/>';
+    clearTimeout(clearTimeDeleteDiv);
+    document.getElementById('table-points').style.display = "none";
+};
 
 onWallSnake = function()
 {
@@ -292,7 +315,7 @@ onWallSnake = function()
         snake.body[0][1] = 24;
     }
 
-}
+};
 
 changeDivImg = function (number)
 {
@@ -375,7 +398,7 @@ onRadiusBody = function(snakeBody)
         }
     }
     return false;
-}
+};
 
 addDivSnake = function()
 {

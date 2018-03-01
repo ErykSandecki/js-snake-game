@@ -30,5 +30,5 @@ backInstruction = function ()
     document.getElementById('set-picture').src = 'images/tubeMenu.jpg';
     setViewButtonMenu("block");
     document.getElementById('back-instruction').style.display = "none";
-}
+};
 

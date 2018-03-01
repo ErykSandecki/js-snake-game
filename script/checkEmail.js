@@ -12,17 +12,11 @@ email =
             if (this.textEmail === '')
             {
                 this.badText.innerText = "Nie podałeś emaila";
-                this.badText.innerText = "";
-                againClick = !againClick;
-                viewMenu();
             }
 
             else if ((this.textEmail.indexOf('@', 1) === -1) || (this.textEmail.indexOf('.', 1) === -1))
             {
                 this.badText.innerText = "Nie poprawny format";
-                this.badText.innerText = "";
-                againClick = !againClick;
-                viewMenu();
             }
 
             else
@@ -32,7 +26,7 @@ email =
                 viewMenu();
             }
         }
-    },
+    }
 };
 
 

@@ -215,13 +215,6 @@ nav.navbar.navbar-default.navbar-fixed-top{
     display: none;
 }
 
-#fruit
-{
-    position: absolute;
-    width: 20px;
-    height: 20px;
-}
-
 #start-game
 {
     position: absolute;
@@ -271,8 +264,6 @@ nav.navbar.navbar-default.navbar-fixed-top{
 {
     text-align: center;
     line-height: 50px;
-    padding-left: 50px;
-    padding-right: 50px;
     color: black;
     font-style: italic;
 }
@@ -281,6 +272,33 @@ nav.navbar.navbar-default.navbar-fixed-top{
 {
     cursor: pointer;
     background-color: #1b6d85;
+}
+
+#fruit
+{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+}
+
+#table-points
+{
+    position: absolute;
+    height: 99px;
+    width: 100%;
+    background-color: white;
+    border-top: 2px solid black;
+    top: 501px;
+    display: none;
+}
+
+#table-points p
+{
+    text-align: center;
+    line-height: 99px;
+    color: black;
+    font-style: italic;
+    font-size: 20px;
 }
 
 /*### PIOTREK ### feature-team ### Informacja o zespole*/
