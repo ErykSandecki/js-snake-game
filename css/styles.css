@@ -271,7 +271,7 @@ nav.navbar.navbar-default.navbar-fixed-top{
 #start-game:hover, #instruction:hover,#back-instruction:hover, #exit:hover
 {
     cursor: pointer;
-    background-color: #1b6d85;
+    background-color: red;
 }
 
 #fruit
