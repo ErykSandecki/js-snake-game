@@ -17,6 +17,27 @@ var snake =
         radiusBody : ['<img src="images/snakeRadiusDegress0-90.jpg"/>','<img src="images/snakeRadiusDegress90-180.jpg"/>','<img src="images/snakeRadiusDegress180-270.jpg"/>','<img src="images/snakeRadiusDegress270-360.jpg"/>'],
     };
 
+//Set Css in div class play, game, fruit after correct entry email//
+setCssGame = function ()
+{
+    setGame = document.getElementById('play');
+    setGame.style.backgroundColor = '#2D2E32';
+    setGame.style.paddingBottom = '40px';
+    setGame = document.getElementById('game');
+    setGame.style.position = 'relative';
+    setGame.style.background = 'white';
+    setGame.style.height = '501px';
+    setGame.style.width = '500px';
+    setGame.style.marginLeft = 'auto';
+    setGame.style.marginRight = 'auto';
+    setGame = document.getElementById('fruit');
+    setGame.style.position = 'absolute';
+    setGame.style.width = '20px';
+    setGame.style.height = '20px';
+    setGame.innerHTML = '<img src="images/snakeLike.jpg"/>';
+    init();
+}
+
 init = function()
 {
     snake.vector = ['up','up','up'];
@@ -385,6 +406,7 @@ addDivSnake = function()
     }
 
 };
+
 document.addEventListener('keydown', onKeyDown);
-init();
+
 
