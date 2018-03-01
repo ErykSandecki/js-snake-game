@@ -1,9 +1,12 @@
 body
 {
-    margin: 0px;
-    padding: 0px;
-    height: 200px;
-    background-color: darkgray;
+	margin: 0px;
+	padding: 0px;
+}
+
+.Play
+{
+    background-color: #2D2E32;
 }
 
 #game{

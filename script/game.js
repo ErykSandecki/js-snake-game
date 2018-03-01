@@ -19,7 +19,6 @@ var snake =
 
 init = function()
 {
-    console.log("init");
     snake.vector = ['up','up','up'];
     snake.body = [[12,12],[12,13],[12,14]]
     snakeNode = [];
@@ -42,7 +41,6 @@ getNewFoodPosition = function()
 
     fruitNode.style.left = (foodPosition[0] * 20).toString() + 'px';
     fruitNode.style.top = (foodPosition[1] * 20).toString() + 'px';
-    fruitNode.innerHTML = '<img src="images/snakeLike.jpg"/>';
 };
 
 isFoodOnSnake = function(foodPosition)
@@ -374,7 +372,6 @@ addDivSnake = function()
     snakeNode[snake.body.length - 1].style.position = 'absolute';
     snakeNode[snake.body.length - 1].style.width = '20px';
     snakeNode[snake.body.length - 1].style.height = '20px';
-    snakeNode[snake.body.length - 1].classList.add('snakeBody');
     document.getElementById('game').appendChild(snakeNode[snake.body.length - 1]);
 
     if((snake.vector[snake.vector.length - 2] === 'up') || (snake.vector[snake.vector.length - 2] === 'down'))
