@@ -1,25 +1,36 @@
-var snake =
-{
-    vector : ['up','up','up'],
-    body :[[12,12],[12,13],[12,14]],
-    radiusBody : ['<img src="images/snakeRadiusDegress0-90.jpg"/>','<img src="images/snakeRadiusDegress90-180.jpg"/>','<img src="images/snakeRadiusDegress180-270.jpg"/>','<img src="images/snakeRadiusDegress270-360.jpg"/>'],
-};
-const snakeNode = [];
 const fruitNode = document.getElementById('fruit');
-const radiusBodyPosition = [];
-const numberRadiusImage = [];
+var clearTimeDeleteDiv;
+var refreshGame;
+var snakeNode;
+var radiusBodyPosition;
+var numberRadiusImage;
 var gameResolution;
 var foodPosition;
-var addNewDiv = false;
+var addNewDiv;
 var numberRadius;
-var nextPressKey = true;
+var nextPressKey;
+
+var snake =
+    {
+        vector : [],
+        body :[[]],
+        radiusBody : ['<img src="images/snakeRadiusDegress0-90.jpg"/>','<img src="images/snakeRadiusDegress90-180.jpg"/>','<img src="images/snakeRadiusDegress180-270.jpg"/>','<img src="images/snakeRadiusDegress270-360.jpg"/>'],
+    };
 
 init = function()
 {
+    console.log("init");
+    snake.vector = ['up','up','up'];
+    snake.body = [[12,12],[12,13],[12,14]]
+    snakeNode = [];
+    radiusBodyPosition = [];
+    numberRadiusImage = [];
+    addNewDiv = false;
+    nextPressKey = true;
     gameResolution = [24,24];
-    document.addEventListener('keydown', onKeyDown);
     getNewFoodPosition();
     addBeginBodySnake();
+    refreshGame = setInterval(drawSnake,5000/60);
 };
 
 getNewFoodPosition = function()
@@ -27,10 +38,10 @@ getNewFoodPosition = function()
     do
     {
         foodPosition = getRandomNewPositionFood();
-    }while(!isFoodOnSnake(foodPosition));
+    }while(isFoodOnSnake(foodPosition));
 
-    fruitNode.style.left = (foodPosition[0]*20).toString() + 'px';
-    fruitNode.style.top = (foodPosition[1]*20).toString() + 'px';
+    fruitNode.style.left = (foodPosition[0] * 20).toString() + 'px';
+    fruitNode.style.top = (foodPosition[1] * 20).toString() + 'px';
     fruitNode.innerHTML = '<img src="images/snakeLike.jpg"/>';
 };
 
@@ -38,8 +49,13 @@ isFoodOnSnake = function(foodPosition)
 {
      for(var i = 0; i < snake.body.length; i++)
      {
-        return ((foodPosition[0] === snake.body[i][0]) && (foodPosition[1] === snake.body[i][1])) ? false : true;
+        if((foodPosition[0] === snake.body[i][0]) && (foodPosition[1] === snake.body[i][1]))
+         {
+             return true;
+         }
      }
+
+     return false;
 };
 
 getRandomNewPositionFood = function()
@@ -53,10 +69,9 @@ addBeginBodySnake = function()
     {
         snakeNode.push(document.createElement('div'));
         snakeNode[snake.body.length - i].style.position = 'absolute';
-        snakeNode[snake.body.length - i].style.backgroundColor = 'black';
         snakeNode[snake.body.length - i].style.width = '20px';
         snakeNode[snake.body.length - i].style.height = '20px';
-        snakeNode[snake.body.length - i].classList.add(snake.body.length.toString());
+        snakeNode[snake.body.length - i].classList.add('snakeBody');
         document.getElementById('game').appendChild(snakeNode[snake.body.length - i]);
 
         if(i === 3)
@@ -114,18 +129,18 @@ moveSnake = function()
             break;
     }
 
-    if(isFoodOnSnake(foodPosition) === false)
+    if(isFoodOnSnake(foodPosition))
     {
         newSnakebody.push(snake.body[snake.body.length - 1]);
         newVector.push(snake.vector[snake.vector. length - 1]);
         getNewFoodPosition();
-        addNewDiv = true;
+        addNewDiv = !addNewDiv;
     }
 
     snake.body = newSnakebody;
     snake.vector = newVector;
 
-    if(addNewDiv === true)
+    if(addNewDiv)
     {
         addNewDiv = !addNewDiv;
         addDivSnake();
@@ -196,6 +211,11 @@ const onKeyDown = (e) =>
                         snake.vector[0] = 'right';
                     }
                     break;
+
+                case 13:
+                    clearTimeout(clearTimeDeleteDiv);
+                    init();
+                    break;
             }
 
             nextPressKey = !nextPressKey;
@@ -212,6 +232,7 @@ drawSnake = function()
     }
 
     moveSnake();
+    onYourOwnBody();
     onWallSnake();
 
     if(!nextPressKey)
@@ -219,6 +240,26 @@ drawSnake = function()
         nextPressKey = !nextPressKey;
     }
 };
+
+onYourOwnBody = function ()
+{
+    for(var i = 1; i < snake.body.length; i++)
+    {
+        if((snake.body[0][0] === snake.body[i][0]) && (snake.body[0][1] === snake.body[i][1]))
+        {
+            clearInterval(refreshGame);
+            clearTimeDeleteDiv = setTimeout(onDeleteDiv, 2000);
+        }
+    }
+}
+
+onDeleteDiv = function ()
+{
+    for(var i = 0; i < snakeNode.length; i++)
+    {
+        document.getElementById('game').removeChild(snakeNode[i]);
+    }
+}
 
 onWallSnake = function()
 {
@@ -331,10 +372,9 @@ addDivSnake = function()
 {
     snakeNode.push(document.createElement('div'));
     snakeNode[snake.body.length - 1].style.position = 'absolute';
-    snakeNode[snake.body.length - 1].style.backgroundColor = 'black';
     snakeNode[snake.body.length - 1].style.width = '20px';
     snakeNode[snake.body.length - 1].style.height = '20px';
-    snakeNode[snake.body.length - 1].classList.add(snake.body.length.toString());
+    snakeNode[snake.body.length - 1].classList.add('snakeBody');
     document.getElementById('game').appendChild(snakeNode[snake.body.length - 1]);
 
     if((snake.vector[snake.vector.length - 2] === 'up') || (snake.vector[snake.vector.length - 2] === 'down'))
@@ -348,6 +388,6 @@ addDivSnake = function()
     }
 
 };
-
+document.addEventListener('keydown', onKeyDown);
 init();
-setInterval(drawSnake,5000/60);
+
