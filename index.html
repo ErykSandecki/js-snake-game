@@ -111,13 +111,16 @@
 		<!--### Gra ## feature-game ### Gra za email -->
 		<section id="play">
 			<div id="game">
-                <div onclick="init()" id="start-game">
+                <img id="set-picture" src="images/tubeMenu.jpg">
+                <div id="start-game"  onclick="init()">
                     <p>GRAJ</p>
                 </div>
-                <div id="instruction">
+                <div id="instruction" onclick="instructionGame()">
                     <p>INSTRUKCJA</p>
                 </div>
-                <div id="back-instruction"></div>
+                <div id="back-instruction" onclick="backInstruction()">
+                    <p>POWRÓT</p>
+                </div>
                 <div id="exit" onclick="exitGame()">
                     <p>WYJŚCIE</p>
                 </div>

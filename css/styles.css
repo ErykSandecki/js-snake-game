@@ -213,7 +213,6 @@ nav.navbar.navbar-default.navbar-fixed-top{
     margin-left: auto;
     margin-right: auto;
     display: none;
-    background-image: url("../images/tubeMenu.jpg");
 }
 
 #fruit
@@ -245,6 +244,18 @@ nav.navbar.navbar-default.navbar-fixed-top{
     border-radius: 5px;
 }
 
+#back-instruction
+{
+    position: absolute;
+    height: 50px;
+    background-color: white;
+    width: 200px;
+    left: 150px;
+    top : 525px;
+    border-radius: 5px;
+    display: none;
+}
+
 #exit
 {
     position: absolute;
@@ -256,7 +267,7 @@ nav.navbar.navbar-default.navbar-fixed-top{
     border-radius: 5px;
 }
 
-#start-game p, #instruction p, #exit p
+#start-game p, #instruction p, #exit p, #back-instruction p
 {
     text-align: center;
     line-height: 50px;
@@ -266,7 +277,7 @@ nav.navbar.navbar-default.navbar-fixed-top{
     font-style: italic;
 }
 
-#start-game:hover, #instruction:hover, #exit:hover
+#start-game:hover, #instruction:hover,#back-instruction:hover, #exit:hover
 {
     cursor: pointer;
     background-color: #1b6d85;

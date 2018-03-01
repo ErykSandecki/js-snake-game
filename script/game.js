@@ -22,9 +22,7 @@ var snake =
 init = function()
 {
     document.getElementById('game').style.backgroundImage = "unset";
-    document.getElementById('start-game').style.display = "none";
-    document.getElementById('instruction').style.display = "none";
-    document.getElementById('exit').style.display = "none";
+    setViewButtonMenu("none");
     snake.vector = ['up','up','up'];
     snake.body = [[12,12],[12,13],[12,14]]
     snakeNode = [];
@@ -36,6 +34,13 @@ init = function()
     getNewFoodPosition();
     addBeginBodySnake();
     refreshGame = setInterval(drawSnake,5000/60);
+};
+
+hideButtonMenu = function ()
+{
+    document.getElementById('start-game').style.display = "none";
+    document.getElementById('instruction').style.display = "none";
+    document.getElementById('exit').style.display = "none";
 };
 
 getNewFoodPosition = function()
