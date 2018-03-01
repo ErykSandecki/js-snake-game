@@ -1,4 +1,5 @@
 var againClick = false;
+var keys = {37: 1, 38: 1, 39: 1, 40: 1};
 
 email =
 {
@@ -24,10 +25,42 @@ email =
                 this.badText.innerText = "";
                 againClick = !againClick;
                 viewMenu();
+                disableScroll();
             }
         }
     }
 };
 
+function preventDefault(e)
+{
+    e = e || window.event;
 
-// window.onscroll = function() { window.scrollTo(0,1000) } //
+    if (e.preventDefault)
+    {
+        e.preventDefault();
+    }
+
+    e.returnValue = false;
+}
+
+function preventDefaultForScrollKeys(e)
+{
+    if (keys[e.keyCode])
+    {
+        preventDefault(e);
+        return false;
+    }
+}
+
+function disableScroll()
+{
+    window.ontouchmove  = preventDefault; // mobile
+    document.onkeydown  = preventDefaultForScrollKeys;
+}
+
+function enableScroll()
+{
+    window.onwheel = true;
+    window.ontouchmove = true;
+    document.onkeydown = true;
+}

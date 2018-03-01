@@ -9,6 +9,7 @@ exitGame = function ()
 {
     mainMenu.style.display = "none";
     againClick = !againClick;
+    enableScroll();
 };
 
 setViewButtonMenu = function (value)

@@ -207,7 +207,7 @@ nav.navbar.navbar-default.navbar-fixed-top{
 {
     position: relative;
     background-color: white;
-    box-shadow: 3px 3px 30px 5px red;
+    box-shadow: 3px 3px 30px 5px darkgray;
     height: 600px;
     width: 500px;
     margin-left: auto;
