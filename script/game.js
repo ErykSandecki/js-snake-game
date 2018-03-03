@@ -99,7 +99,7 @@ var game =
         this.addPoints = false;
         this.getNewFoodPosition();
         this.addBeginBodySnake();
-        this.refreshGame = setInterval(this.drawSnake.bind(game),this.upSpeedSnake/60);
+        this.refreshGame = setInterval(this.drawSnake.bind(this),this.upSpeedSnake/60);
     },
 
     getNewFoodPosition : function()
@@ -266,7 +266,7 @@ var game =
             this.upSpeedSnake -= 25;
             this.addPoints = !this.addPoints;
             clearInterval(this.refreshGame);
-            this.refreshGame = setInterval(this.drawSnake.bind(game), this.upSpeedSnake/60);
+            this.refreshGame = setInterval(this.drawSnake.bind(this), this.upSpeedSnake/60);
         }
     },
 
@@ -277,7 +277,7 @@ var game =
             if((this.snake.body[0][0] === this.snake.body[i][0]) && (this.snake.body[0][1] === this.snake.body[i][1]))
             {
                 clearInterval(this.refreshGame);
-                this.clearTimeDeleteDiv = setTimeout(this.onDeleteDiv.bind(game), 2000);
+                this.clearTimeDeleteDiv = setTimeout(this.onDeleteDiv.bind(this), 2000);
             }
         }
     },
