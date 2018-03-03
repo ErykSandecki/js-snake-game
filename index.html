@@ -112,16 +112,16 @@
 		<section id="play">
 			<div id="game">
                 <img id="set-picture" src="images/tubeMenu.jpg">
-                <div id="start-game"  onclick="init()">
+                <div id="start-game"  onclick="game.init()">
                     <p>GRAJ</p>
                 </div>
-                <div id="instruction" onclick="instructionGame()">
+                <div id="instruction" onclick="menuGame.instructionGame()">
                     <p>INSTRUKCJA</p>
                 </div>
-                <div id="back-instruction" onclick="backInstruction()">
+                <div id="back-instruction" onclick="menuGame.backInstruction()">
                     <p>POWRÓT</p>
                 </div>
-                <div id="exit" onclick="exitGame()">
+                <div id="exit" onclick="menuGame.exitGame()">
                     <p>WYJŚCIE</p>
                 </div>
                 <div id="fruit"></div>
@@ -275,7 +275,5 @@
 <script src="bootstrap/jquery.min.js"></script>
 <script src="bootstrap/bootstrap.min.js"></script>
 <script src="script/game.js"></script>
-<script src="script/menuGame.js"></script>
-<script src="script/checkEmail.js"></script>
 </body>
 </html>
